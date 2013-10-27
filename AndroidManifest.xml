@@ -4,10 +4,35 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <!-- GCM requires Android SDK version 2.2 (API level 8) or above. -->
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--
+     Creates a custom permission so only this app can receive its messages.
+
+     NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE,
+           where PACKAGE is the application's package name.
+    -->
+    <permission
+        android:name="me.monnand.uniqush.demo.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission
+        android:name="me.monnand.uniqush.demo.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission
+        android:name="com.google.android.c2dm.permission.RECEIVE" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,6 +47,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!--
+          BroadcastReceiver that will receive intents from GCM.
+          Always set it to org.uniqush.android.GCMBroadcastReceiver
+        -->
+        <receiver
+            android:name="org.uniqush.android.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="me.monnand.uniqush.demo" />
+            </intent-filter>
+        </receiver>
+        
+        <!--
+          Always specify these two services.
+        -->
+        <service android:name="org.uniqush.android.GCMIntentService" />
+        <service android:name="org.uniqush.android.obsoleted.MessageCenterService" />
     </application>
 
 </manifest>
