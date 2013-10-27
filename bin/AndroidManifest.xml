@@ -68,7 +68,7 @@
           Always specify these two services.
         -->
         <service android:name="org.uniqush.android.GCMIntentService" />
-        <service android:name="org.uniqush.android.obsoleted.MessageCenterService" />
+        <service android:name="org.uniqush.android.MessageCenterService" />
     </application>
 
 </manifest>

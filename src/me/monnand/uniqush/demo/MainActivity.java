@@ -15,11 +15,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		Log.i(TAG, "Start");
 		try {
 			MessageCenter.init(this, "me.monnand.uniqush.demo.UserInfoProvider");
 		} catch (Exception e) {
 			Log.wtf(TAG, e.toString());
 		}
+		MessageCenter.connect(this, 10);
 	}
 
 	@Override
