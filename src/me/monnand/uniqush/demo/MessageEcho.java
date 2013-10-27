@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.uniqush.android.MessageCenter;
 import org.uniqush.android.MessageHandler;
 import org.uniqush.client.Message;
 
@@ -74,11 +75,12 @@ public class MessageEcho implements MessageHandler {
 	public void onMessageFromServer(String dstService, String dstUser,
 			String id, Message msg) {
 		Log.i(TAG, "Message Received from server with id " + id);
-		byte[] body = { 1, 2, 3 };
-		msg.put(body);
 		/*
 		 * if (msg.get("stop") != null) { this.center.stop(context); }
 		 */
+		if (msg.get("stop") != null) {
+			MessageCenter.stop(context, -1);
+		}
 		// this.center.sendMessageToServer(this.context, 0, msg);
 		printMessage(msg);
 

@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 		} catch (Exception e) {
 			Log.wtf(TAG, e.toString());
 		}
-		MessageCenter.connect(this, 10);
+		MessageCenter.connect(this, 1);
 	}
 
 	@Override
