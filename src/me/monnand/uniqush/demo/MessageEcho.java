@@ -51,8 +51,9 @@ public class MessageEcho implements MessageHandler {
 
 	@Override
 	public void onMissingAccount() {
-		// TODO Auto-generated method stub
-
+		// In real world, the app should ask to user to use a google account on
+		// the device.
+		Log.i(TAG, "Account missing");
 	}
 
 	@Override

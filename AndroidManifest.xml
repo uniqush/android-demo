@@ -9,7 +9,7 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
-    <!-- GCM connects to Google Services. -->
+    <!-- GCM connects to Google Services. Uniqush connects to the app's server -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- GCM requires a Google account. -->
