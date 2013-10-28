@@ -69,6 +69,16 @@ public class MessageEcho implements MessageHandler {
 			reason = ": " + e.getMessage();
 		}
 		Log.i(TAG, "onResult: " + id + reason);
+
+		if (id == 1) {
+			Message msg = new Message();
+			if (e == null) {
+				msg.put("callid=" + id, "success");
+			} else {
+				msg.put("callid=" + id, e.toString());
+			}
+			MessageCenter.sendMessageToServer(context, 10, msg);
+		}
 	}
 
 	@Override
