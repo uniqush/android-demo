@@ -37,11 +37,11 @@ public class UserInfoProvider implements org.uniqush.android.UserInfoProvider {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		this.cinfo = new ConnectionInfo("10.0.2.2", 8964, "monnand", "token", true);
+		this.cinfo = new ConnectionInfo("10.0.2.2", 8964, "service", "monnand", true);
 	}
 	@Override
 	public String getToken(String service, String username) {
-		return "token";
+		return "token/password";
 	}
 
 	@Override
