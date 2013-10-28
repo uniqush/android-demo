@@ -69,29 +69,17 @@ public class MessageEcho implements MessageHandler {
 			reason = ": " + e.getMessage();
 		}
 		Log.i(TAG, "onResult: " + id + reason);
-
-		if (id == 1) {
-			Message msg = new Message();
-			if (e == null) {
-				msg.put("callid=" + id, "success");
-			} else {
-				msg.put("callid=" + id, e.toString());
-			}
-			MessageCenter.sendMessageToServer(context, 10, msg);
-		}
 	}
 
 	@Override
 	public void onMessageFromServer(String dstService, String dstUser,
 			String id, Message msg) {
 		Log.i(TAG, "Message Received from server with id " + id);
-		/*
-		 * if (msg.get("stop") != null) { this.center.stop(context); }
-		 */
 		if (msg.get("stop") != null) {
 			MessageCenter.stop(context, -1);
 		}
-		// this.center.sendMessageToServer(this.context, 0, msg);
+		// We don't care about the result. So set the id to 0.
+		MessageCenter.sendMessageToServer(context, 0, msg);
 		printMessage(msg);
 
 	}
