@@ -90,8 +90,7 @@ public class MessageEcho implements MessageHandler {
 		Log.i(TAG, "Message Received from user with id " + id + "; service="
 				+ srcService + "; username=" + srcUser + ": ");
 		printMessage(msg);
-		// this.center.sendMessageToUser(context, 1, service, username, msg,
-		// 3600);
+		MessageCenter.sendMessageToUser(context, 0, dstService, dstUser, msg, 3600);
 
 	}
 
