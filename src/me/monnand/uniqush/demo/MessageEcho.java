@@ -105,18 +105,18 @@ public class MessageEcho implements MessageHandler {
 	}
 
 	@Override
-	public void onMessageDigestFromServer(String dstService, String dstUser,
-			int size, String id, Map<String, String> parameters) {
-		Log.i(TAG, "Message digest Received from server with id " + id + ": ");
+	public void onMessageDigestFromServer(boolean online, String dstService,
+			String dstUser, int size, String id, Map<String, String> parameters) {
+		Log.i(TAG, "Message digest Received from server with id " + id + "; online=" + online + ": ");
 		// this.center.requestMessage(context, 30, id);
 
 	}
 
 	@Override
-	public void onMessageDigestFromUser(String dstService, String dstUser,
-			String srcService, String srcUser, int size, String id,
-			Map<String, String> parameters) {
-		Log.i(TAG, "Message digest Received from user with message id " + id
+	public void onMessageDigestFromUser(boolean online, String dstService,
+			String dstUser, String srcService, String srcUser, int size,
+			String id, Map<String, String> parameters) {
+		Log.i(TAG, "Message digest Received from user with id " + id + "; online=" + online
 				+ "; service=" + srcService + "; username=" + srcUser + ": ");
 		// this.center.requestMessage(context, 30, id);
 	}
