@@ -60,15 +60,12 @@ public class UserInfoProvider implements org.uniqush.android.UserInfoProvider {
 	}
 
 	@Override
-	public MessageHandler getMessageHandler(String host, int port,
-			String service, String username) {
-		// TODO Auto-generated method stub
+	public MessageHandler getMessageHandler(String service, String username) {
 		return new MessageEcho(this.context);
 	}
 
 	@Override
 	public ConnectionInfo getConnectionInfo() {
-		// TODO Auto-generated method stub
 		return cinfo;
 	}
 
