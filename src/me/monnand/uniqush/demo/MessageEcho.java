@@ -31,7 +31,11 @@ public class MessageEcho implements MessageHandler {
 
 	private void printMessage(Message msg) {
 		Map<String, String> header = msg.getHeader();
-		printMap(header);
+		if (header == null) {
+			Log.i(TAG, "null header; ");
+		} else {
+			printMap(header);
+		}
 	}
 
 	@Override
@@ -76,7 +80,9 @@ public class MessageEcho implements MessageHandler {
 			String id, Message msg) {
 		Log.i(TAG, "Message Received from server with id " + id);
 		if (msg.get("stop") != null) {
+			Log.i(TAG, "I was told to stop the service.");
 			MessageCenter.stop(context, -1);
+			return;
 		}
 		// We don't care about the result. So set the id to 0.
 		MessageCenter.sendMessageToServer(context, 0, msg);
@@ -89,8 +95,12 @@ public class MessageEcho implements MessageHandler {
 			String srcService, String srcUser, String id, Message msg) {
 		Log.i(TAG, "Message Received from user with id " + id + "; service="
 				+ srcService + "; username=" + srcUser + ": ");
+		if (msg == null) {
+			Log.w(TAG, "Message is null");
+		}
 		printMessage(msg);
-		MessageCenter.sendMessageToUser(context, 0, dstService, dstUser, msg, 3600);
+		MessageCenter.sendMessageToUser(context, 0, dstService, dstUser, msg,
+				3600);
 
 	}
 
