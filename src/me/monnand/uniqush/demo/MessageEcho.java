@@ -108,8 +108,7 @@ public class MessageEcho implements MessageHandler {
 	public void onMessageDigestFromServer(boolean online, String dstService,
 			String dstUser, int size, String id, Map<String, String> parameters) {
 		Log.i(TAG, "Message digest Received from server with id " + id + "; online=" + online + ": ");
-		// this.center.requestMessage(context, 30, id);
-
+		MessageCenter.requestMessages(context, 0, id);
 	}
 
 	@Override
@@ -118,6 +117,6 @@ public class MessageEcho implements MessageHandler {
 			String id, Map<String, String> parameters) {
 		Log.i(TAG, "Message digest Received from user with id " + id + "; online=" + online
 				+ "; service=" + srcService + "; username=" + srcUser + ": ");
-		// this.center.requestMessage(context, 30, id);
+		MessageCenter.requestMessages(context, 0, id);
 	}
 }
