@@ -8,6 +8,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import android.content.Context;
+import android.util.Log;
 
 import org.uniqush.android.ConnectionInfo;
 import org.uniqush.android.MessageHandler;
@@ -16,7 +17,10 @@ public class UserInfoProvider implements org.uniqush.android.UserInfoProvider {
 
 	private RSAPublicKey pubKey;
 	private ConnectionInfo cinfo;
+	private ConnectionInfo cinfo2;
 	private Context context;
+	
+	private static final String TAG = "uif";
 
 	public UserInfoProvider(Context context) {
 		this.context = context;
@@ -38,8 +42,9 @@ public class UserInfoProvider implements org.uniqush.android.UserInfoProvider {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.cinfo = new ConnectionInfo("10.0.2.2", 8964, "service", "monnand",
-				true);
+		this.cinfo = new ConnectionInfo("10.0.2.2", 8964, "service", "monnand");
+		this.cinfo2 = new ConnectionInfo("10.0.2.2", 8964, "service",
+				"monnand", true, false, 1024, 1024);
 	}
 
 	@Override
@@ -66,6 +71,11 @@ public class UserInfoProvider implements org.uniqush.android.UserInfoProvider {
 
 	@Override
 	public ConnectionInfo getConnectionInfo() {
+		if (Math.random() > 0.5) {
+			Log.i(TAG, "Use the second config");
+			return cinfo2;
+		}
+		Log.i(TAG, "Use the first config");
 		return cinfo;
 	}
 
